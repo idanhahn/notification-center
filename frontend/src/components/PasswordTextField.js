@@ -4,26 +4,21 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
+  FormHelperText,
   FormControl,
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-interface State {
-  password: string;
-  showPassword: boolean;
-}
-
-export default function PasswordTextField({ register }: { register: any }) {
-  const [values, setValues] = useState<State>({
+export default function PasswordTextField({ register, errors }) {
+  const [values, setValues] = useState({
     password: '',
     showPassword: false,
   });
 
-  const handleChange =
-    (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
   const handleClickShowPassword = () => {
     setValues({
       ...values,
@@ -31,14 +26,12 @@ export default function PasswordTextField({ register }: { register: any }) {
     });
   };
 
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
+  const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
   return (
-    <FormControl variant="outlined">
+    <FormControl variant="outlined" error={Boolean(errors.password)}>
       <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
       <OutlinedInput
         {...register('password')}
@@ -60,6 +53,7 @@ export default function PasswordTextField({ register }: { register: any }) {
         }
         label="Password"
       />
+      <FormHelperText>{errors.password?.message}</FormHelperText>
     </FormControl>
   );
 }
