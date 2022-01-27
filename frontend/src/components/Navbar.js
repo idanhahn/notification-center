@@ -1,13 +1,12 @@
 import {
   Typography,
   Button,
-  IconButton,
   AppBar,
   Toolbar,
   Container,
   Box,
 } from '@mui/material';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import NotificationsNavbar from './NotificationsNavbar';
 
 export default function Navbar() {
   return (
@@ -17,11 +16,7 @@ export default function Navbar() {
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             LOGO
           </Typography>
-          <Box>
-            <IconButton>
-              <NotificationsIcon sx={{ color: 'white' }} />
-            </IconButton>
-          </Box>
+          <NotificationsNavbar />
           <Box>
             <Button sx={{ color: 'white' }}>LOGIN</Button>
           </Box>

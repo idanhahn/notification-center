@@ -1,7 +1,7 @@
 const Notification = require('../models/notification');
 
 const getNotifications = async (req, res) => {
-  const notifications = await Notification.find();
+  const notifications = await Notification.find({ deletedAt: null });
   res.send(notifications);
 };
 
